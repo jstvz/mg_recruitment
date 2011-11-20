@@ -1,0 +1,254 @@
+karyotype = etc/01-pseudo69.kary
+
+chromosomes_units           = 1000
+chromosomes_display_default = yes
+    <colors>
+    <<include etc/colors.conf>>
+    <<include etc/brewer.conf>>
+    </colors>
+
+    <fonts>
+    <<include etc/fonts.conf>>
+    </fonts>
+
+    <ideogram>
+        <spacing>
+
+        default = 3u
+        break   = 3u
+
+        axis_break_at_edge = yes
+        axis_break         = yes
+        axis_break_style   = 2
+
+        <break_style 1>
+        stroke_color = black
+        fill_color   = blue
+        thickness    = 0.1r
+        stroke_thickness = 2
+        </break>
+
+        <break_style 2>
+        stroke_color     = black
+        stroke_thickness = 3
+        thickness        = 1.5r
+        </break>
+
+        </spacing>
+
+        # thickness (px) of chromosome ideogram
+        thickness        = 5p
+        stroke_thickness = 2
+        # ideogram border color
+        stroke_color     = black
+        fill             = yes
+        # the default chromosome color is set here and any value
+        # defined in the karyotype file overrides it
+        fill_color       = black
+
+        # fractional radius position of chromosome ideogram within image
+        radius         = 0.85r
+        show_label     = no
+        label_with_tag = yes
+        label_font     = condensedbold
+        label_radius   = dims(ideogram,radius) + 0.075r
+        label_size     = 60p
+
+        # cytogenetic bands
+        band_stroke_thickness = 2
+
+        # show_bands determines whether the outline of cytogenetic bands
+        # will be seen
+        show_bands            = no
+        # in order to fill the bands with the color defined in the karyotype
+        # file you must set fill_bands
+        fill_bands            = yes
+    </ideogram>
+
+        <ticks>
+        show_ticks          = yes
+        show_tick_labels    = yes
+
+        grid_start         = dims(ideogram,radius_inner)-0.5r
+        grid_end           = dims(ideogram,radius_outer)+100
+
+        skip_first_label     = no
+        skip_last_label      = no
+        radius               = dims(ideogram,radius_outer)
+        tick_separation      = 2p
+        min_label_distance_to_edge = 0p
+        label_separation = 5p
+        label_offset     = 2p
+        label_size = 8p
+        multiplier = 1e-6
+        color = black
+
+
+        <tick>
+
+        label_size     = 24p
+        label_color    = lblue
+        format         = %.1f
+        multiplier = 1/1u
+        suffix         = kb
+        spacing        = 100u
+        size           = 8p
+        thickness      = 2p
+        color          = black
+        show_label     = yes
+
+        grid           = yes
+        grid_color     = dgrey
+        grid_thickness = 1p
+        </tick>
+        <tick>
+        spacing        = 1000u
+        size           = 8p
+        thickness      = 2p
+        color          = black
+        show_label     = yes
+        label_size     = 48p
+        label_offset   = 0p
+        suffix         = Mb
+        format         = %d
+        grid           = yes
+        grid_color     = dgrey
+        grid_thickness = 1p
+        </tick>
+
+        </ticks>
+
+    <image>
+        dir   = /home/james/bin/circos-0.55
+        file  = circos-tutorial.png
+        24bit = yes
+        png   = no
+        svg   = yes
+        # radius of inscribed circle in image
+        radius         = 750p
+        background     = white
+        # by default angle=0 is at 3 o'clock position
+        angle_offset   = -90
+        #angle_orientation = counterclockwise
+        auto_alpha_colors = yes
+        auto_alpha_steps  = 5
+    </image>
+
+#
+# define highlights within <highlights> block
+#
+# note that the radial axis grid is drawn on top of the highlights
+
+    <plots>
+        layers_overflow = collapse 
+        #layer_overflow_color = orange
+        <plot>
+
+        show    = yes
+        type    = tile
+        file    = mg/fgtw01.trab.70.txt
+
+        layers = 1
+
+        margin = 0.02u
+
+        orientation = in
+
+        thickness = 25
+        padding = 0
+
+        color = orange #t4
+        r0    = 0.78r
+        r1    = 0.83r
+        background       = yes
+        background_color = vvvlgrey
+
+        </plot>
+        <plot>
+
+        show    = yes
+        type    = tile
+        file    = mg/fgtw01.trab.80.txt
+
+        layers = 1
+
+        margin = 0.02u
+
+        orientation = in
+
+        thickness = 25
+        padding = 0
+
+        color = dred #t3
+        r0    = 0.83r
+        r1    = 0.88r
+        background       = yes
+        background_color = vvvlgrey
+        </plot>
+        <plot>
+
+        show    = yes
+        type    = tile
+        file    = mg/fgtw01.trab.90.txt
+
+        layers = 1
+
+        margin = 0.02u
+
+        orientation = in
+
+        thickness = 25
+        padding = 0
+
+        color = purple #t2
+        r0    = 0.88r
+        r1    = 0.93r
+        background       = yes
+        background_color = vvvlgrey
+        </plot>
+        <plot>
+
+        show    = yes
+        type    = tile
+        file    = mg/fgtw01.trab.98.txt
+
+        layers = 1
+
+        margin = 0.02u
+
+        orientation = in
+
+        thickness = 25 
+        padding = 0
+
+        color = dblue #t1
+        r0    = 0.93r
+        r1    = 0.98r
+        background       = yes
+        background_color = vvvlgrey
+        </plot>
+    </plots>
+    <highlights>
+
+        # the default value for z-depth and fill_color for all highlights
+
+        z = 0
+        fill_color = green
+
+        # we'll draw three highlight sets, all using the same data file
+
+        # the first set will be drawin from 0.6x 1x-25pixels of the ideogram
+        # radius and will be green (color by default)
+
+        <highlight>
+        #file       = /home/james/trab/results/assemblies/110621/01_unfil/01-contigs69.cds
+        #r0         = 0.8r
+        #r1         = 0.9r
+        #fill_color = blue
+        #stroke_color = dblue
+        #stroke_thickness = 0.5
+        </highlight>
+    </highlights>
+<<include etc/housekeeping.conf>>
+
+
